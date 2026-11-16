@@ -1,0 +1,69 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Author Network Visualization</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+</head>
+
+<body>
+    <main>
+        <header class="page-header">
+            <h1>Author Network Visualization</h1>
+            <p>Explore co-authorship connections in the Scopus research dataset.</p>
+        </header>
+
+        <section class="controls" aria-label="Force simulation controls">
+            <label class="control" for="charge-strength">
+                <span>Charge strength <output id="charge-value">-25</output></span>
+                <input id="charge-strength" type="range" min="-100" max="-10" step="5" value="-25">
+                <small>Controls repulsion between authors</small>
+            </label>
+            <label class="control" for="collision-radius">
+                <span>Collision radius <output id="collision-value">1.8</output></span>
+                <input id="collision-radius" type="range" min="1" max="3" step="0.1" value="1.8">
+                <small>Scales the space around each author</small>
+            </label>
+            <label class="control" for="link-strength">
+                <span>Link strength <output id="link-value">0.20</output></span>
+                <input id="link-strength" type="range" min="0" max="1" step="0.01" value="0.2">
+                <small>Controls the pull between co-authors</small>
+            </label>
+        </section>
+
+        <section class="legend-panel" aria-label="Country color legend">
+            <h2>Author affiliation country</h2>
+            <div id="country-legend" class="country-legend"></div>
+        </section>
+
+        <p id="status" class="status" role="status" aria-live="polite">Loading author data…</p>
+
+        <section id="network" aria-label="Author co-authorship network">
+            <aside id="author-details" class="author-details" aria-live="polite" hidden>
+                <button id="close-details" class="close-details" type="button" aria-label="Close author details">×</button>
+                <h2 id="detail-name"></h2>
+                <dl>
+                    <dt>Affiliation</dt>
+                    <dd id="detail-affiliation"></dd>
+                    <dt>Country</dt>
+                    <dd id="detail-country"></dd>
+                    <dt>Co-author connections</dt>
+                    <dd id="detail-degree"></dd>
+                    <dt>Scopus author ID</dt>
+                    <dd id="detail-id"></dd>
+                </dl>
+            </aside>
+        </section>
+
+        <p class="help-text">Hover over an author to highlight researchers at the same affiliation. Click a node to view author details.</p>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
